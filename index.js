@@ -39,5 +39,5 @@ client.on('connect', function () {
                 console.error('Failed to send message', err);
             }
         });
-    }, 900); // Adjust timing as necessary
+    }, 500); // Adjust timing as necessary
 });
