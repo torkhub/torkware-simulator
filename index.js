@@ -3,6 +3,7 @@ const client = mqtt.connect('mqtt://localhost:1883')
 let g_speed = 0;
 let tps = 0;
 let i_acc = 0.0;
+let accDirection = 0.1; // Adjust the increment rate as needed
 
 client.on('connect', function () {
     console.log('Connected to MQTT Broker');
