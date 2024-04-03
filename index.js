@@ -1,5 +1,8 @@
 import mqtt from 'mqtt'
 const client = mqtt.connect('mqtt://localhost:1883')
+let g_speed = 0;
+let tps = 0;
+let i_acc = 0.0;
 
 client.on('connect', function () {
     console.log('Connected to MQTT Broker')
