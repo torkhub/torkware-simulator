@@ -6,7 +6,9 @@ const client = mqtt.connect('mqtt://localhost:1883')
 let gps_speed = 0;
 let tps = 0;
 let i_acc = 0.0;
-let accDirection = 0.1; // Adjust the increment rate as needed
+let accDirection = 0.1; 
+let speedDirection = 1;
+
 let DELAY = args[0] ? args[0] : 1000
 
 client.on('connect', function () {
