@@ -15,8 +15,10 @@ client.on('connect', function () {
     console.log(`Starting telemetry simulator with a Delay of ${DELAY}...`)
 
     setInterval(() => {
-        if (gps_speed < 150) {
-            gps_speed += 1;
+        gps_speed += speedDirection;
+        // Reverse direction if g_speed hits 150 or goes below 0
+        if (gps_speed >= 150 || gps_speed <= 0) {
+            speedDirection *= -1;
         }
 
         tps = (tps >= 100) ? 0 : tps + 1;
