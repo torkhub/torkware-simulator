@@ -1,6 +1,6 @@
 import mqtt from 'mqtt'
 const client = mqtt.connect('mqtt://localhost:1883')
-let g_speed = 0;
+let gps_speed = 0;
 let tps = 0;
 let i_acc = 0.0;
 let accDirection = 0.1; // Adjust the increment rate as needed
@@ -10,9 +10,9 @@ client.on('connect', function () {
     const topic = 'local/telemetry';
 
     setInterval(() => {
-        // Increment g_speed up to 150
-        if (g_speed < 150) {
-            g_speed += 1;
+        // Increment gps_speed up to 150
+        if (gps_speed < 150) {
+            gps_speed += 1;
         }
 
         // Reset tps to 0 if it reaches 100, otherwise increment (Assumption, adjust as needed)
@@ -26,9 +26,9 @@ client.on('connect', function () {
 
         // Construct and publish message
         const message = JSON.stringify({
-            g_speed,
+            gps_speed,
             tps,
-            i_acc: i_acc,
+            inline_acc: parseFloat(i_acc.toFixed(2)),
             time: Date.now()
         });
 
