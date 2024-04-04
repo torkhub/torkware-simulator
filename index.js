@@ -1,21 +1,23 @@
 import mqtt from 'mqtt'
+
+const args = process.argv.slice(2); // This removes the first two elements
+
 const client = mqtt.connect('mqtt://localhost:1883')
 let gps_speed = 0;
 let tps = 0;
 let i_acc = 0.0;
 let accDirection = 0.1; // Adjust the increment rate as needed
+let DELAY = args[0];
 
 client.on('connect', function () {
     console.log('Connected to MQTT Broker');
     const topic = 'local/telemetry';
 
     setInterval(() => {
-        // Increment gps_speed up to 150
         if (gps_speed < 150) {
             gps_speed += 1;
         }
 
-        // Reset tps to 0 if it reaches 100, otherwise increment (Assumption, adjust as needed)
         tps = (tps >= 100) ? 0 : tps + 1;
 
         // Adjust i_acc within the bounds of -2 and +2
@@ -39,5 +41,5 @@ client.on('connect', function () {
                 console.error('Failed to send message', err);
             }
         });
-    }, 500); // Adjust timing as necessary
+    }, DELAY);
 });
