@@ -28,7 +28,7 @@ client.on('connect', function () {
         const message = JSON.stringify({
             g_speed,
             tps,
-            i_acc: parseFloat(i_acc.toFixed(2)),
+            i_acc: i_acc,
             time: Date.now()
         });
 
